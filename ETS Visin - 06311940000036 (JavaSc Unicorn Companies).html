@@ -1,0 +1,205 @@
+<html>
+
+
+
+<head>
+    <title>ETS VISIN - 06311940000036</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>var ml = { timelines: {}};</script>
+</head>
+
+<canvas height="40vh" width="80vw"></canvas>
+
+<body>
+
+
+    <div class="moving-letters"><h1 class="ml13">Visualisasi Informasi - 06311940000036</h1></div>
+    <script>
+    // Wrap every letter in a span
+    $('.ml13').each(function(){
+      $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+    });
+
+    ml.timelines["ml13"] = anime.timeline({loop: true})
+      .add({
+        targets: '.ml13 .letter',
+        translateY: [100,0],
+        translateZ: 0,
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 1400,
+        delay: function(el, i) {
+          return 300 + 30 * i;
+        }
+      }).add({
+        targets: '.ml13 .letter',
+        translateY: [0,-100],
+        opacity: [1,0],
+        easing: "easeInExpo",
+        duration: 1200,
+        delay: function(el, i) {
+          return 100 + 30 * i;
+        }
+      });
+    </script>
+
+    <style>
+    .ml13 {
+      font-size: 1.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5em;
+      font-weight: 600;
+      font: 13px "Source Sans Pro", Arial, Helvetica, sans-serif;
+      background-color: #7abccc;
+      color: #fff;
+      text-align: center;
+    }
+	.moving-letters {
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .ml13 .letter {
+      display: inline-block;
+      line-height: 1em;
+    }
+    </style>
+    <div>
+        <canvas id="myChart" width="700" height="700"></canvas>
+    </div>
+
+
+
+    <script>
+
+        const data = {
+            labels: [
+                'Artificial Intelligence',
+                'Auto & transportation',
+                'Consumer & retail',
+                'Cybersecurity',
+                'Data management & analytics',
+                'E-commerce & direct-to-consumer',
+                'Edtech',
+                'Fintech',
+                'Hardware',
+                'Health',
+                'Internet software & services',
+                'Mobile & telecommunications',
+                'Supply chain, logistics, & delivery',
+                'Travel',
+                'Other'
+            ],
+
+
+            datasets: [{
+                label: 'My First Dataset',
+                data: [80, 29, 25, 49, 41, 111, 28, 211, 33, 69, 194, 38, 58, 14, 56],
+                backgroundColor: [
+                    'rgb(174, 182, 191)',
+                    'rgb(248, 196, 113)',
+                    'rgb(249, 231, 159)',
+
+                    'rgb(237, 187, 153)',
+                    'rgb(229, 231, 233)',
+                    'rgb(195, 155, 211)',
+
+                    'rgb(118, 215, 196)',
+                    'rgb(212, 230, 241)',
+                    'rgb(241, 148, 138)',
+
+                    'rgb(69, 179, 157)',
+                    'rgb(191, 201, 202)',
+                    'rgb(229, 152, 102)',
+
+                    'rgb(127, 179, 213)',
+                    'rgb(230, 176, 170)',
+                    'rgb(208, 236, 231)',
+                    
+                ],
+                hoverOffset: 50
+            }]
+        };
+    </script>
+
+
+    <script>
+        const plugin = {
+            id: 'custom_canvas_background_color',
+            beforeDraw: (chart) => {
+                const ctx = chart.canvas.getContext('2d');
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = 'beige';
+                ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.restore();
+            }
+        };
+    </script>
+
+
+    <script>
+        const config = {
+            type: 'doughnut',
+            data: data,
+            plugins: [plugin],
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Industry Segmentation of Unicorn Companies',
+                        font: {
+                            size: 34,
+                        },
+                    },
+
+                    subtitle: {
+                        display: true,
+                        text: 'Data Source : Kaggle.com',
+                    },
+
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                    }
+                },
+
+                responsive: true,
+                maintainAspectRatio: true,
+                animations: {
+                    y: {
+                    animateRotate: true,
+                    render: false,
+                    delay : 8000,
+                    duration: 8000,
+                    }
+                }
+            }     
+                
+                        
+        };
+    </script>
+    
+
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+
+
+</body>
+
+</html>
